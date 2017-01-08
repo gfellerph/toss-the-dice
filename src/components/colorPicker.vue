@@ -11,18 +11,20 @@
 		data() {
 			return {
 				colors: [
-					'cyan',
-					'magenta',
-					'yellow',
+					'#EF4444',
+					'#FAA31B',
+					'#FFF000',
+					'#82C341',
+					'#009F75',
+					'#88C6ED',
+					'#394BA0',
+					'#D54799',
 				],
 				isShowing: false,
 				resolveFunction: null,
 			}
 		},
 		computed: {
-			showHide() {
-				return `display: ${this.isShowing ? 'flex' : 'none'}`;
-			},
 		},
 		methods: {
 			style(color) {
@@ -65,6 +67,7 @@
 		float: left;
 		width: 50px;
 		height: 50px;
+		border: 1px solid black;
 	}
 
 	.color + .color {

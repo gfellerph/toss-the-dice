@@ -5,7 +5,7 @@ export default class Dice {
     this.eyes = parseInt(eyes) || 6;
     this.lastToss = 0;
     this.id = cuid();
-    this.color = 'white';
+    this.color = '#FFFFFF';
     this.toss();
   }
 
