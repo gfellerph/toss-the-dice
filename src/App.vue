@@ -18,9 +18,15 @@
 
 <script>
 import DiceComponent from 'components/dice';
+import Shake from 'shake.js';
 import TemplateDiceComponent from 'components/templateDice';
 import ColorPickerComponent from 'components/colorPicker';
 import Dice from 'models/dice';
+
+var shakeListener = new Shake({
+  threshold: 15,
+  timeout: 300
+});
 
 export default {
   name: 'app',
@@ -30,6 +36,9 @@ export default {
       templateDices: [6, 20],
       settingColor: false,
     }
+  },
+  mounted() {
+    window.addEventListener('shake', this.toss, false);
   },
   components: {
     DiceComponent,
@@ -47,9 +56,17 @@ export default {
   },
   methods: {
     addDice(event) {
+      if (this.dices.length === 0) {
+        shakeListener.start();
+      }
+
       this.dices.push(new Dice(event.dataTransfer.getData('text/dice-eyes')));
     },
     removeDice(event) {
+      if (this.dices.length === 1) {
+        shakeListener.stop();
+      }
+
       const diceIdToRemove = event.dataTransfer.getData('text/dice-id');
       this.dices = this.dices.filter(dice => dice.id != diceIdToRemove);
     },
