@@ -1,7 +1,9 @@
 <template>
-	<div class="colorpicker" :style="showHide">
-		<div class="color-wrapper">
-			<div v-for="color in colors" class="color" :style="style(color)" @click="tryResolve(color)"></div>
+	<div>
+		<div v-if="isShowing" class="colorpicker">
+			<div class="color-wrapper">
+				<div v-for="color in colors" class="color" :style="style(color)" @click="tryResolve(color)"></div>
+			</div>
 		</div>
 	</div>
 </template>
